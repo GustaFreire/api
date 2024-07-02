@@ -5,12 +5,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import med.voll.api.dto.medico.MedicoDto;
+
 @RestController
 @RequestMapping("/medicos")
 public class MedicoController {
 
     @PostMapping
-    public void cadastrar(@RequestBody String json) {
-        System.out.println(json);
+    public void cadastrar(@RequestBody MedicoDto medico) {
+        System.out.println(medico);
     }
 }
