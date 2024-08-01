@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import med.voll.api.dto.endereco.EnderecoDto;
 import med.voll.api.enums.Especialidade;
 
-public record MedicoDto(
+public record MedicoDtoCadastro(
 
     @NotBlank
     String nome,
