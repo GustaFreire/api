@@ -1,47 +1,42 @@
-package med.voll.api.modelo;
+package med.voll.api.domain.modelo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.dto.medico.MedicoDtoAtualizacao;
-import med.voll.api.dto.medico.MedicoDtoCadastro;
-import med.voll.api.enums.Especialidade;
+import med.voll.api.domain.dto.paciente.PacienteDtoAtualizacao;
+import med.voll.api.domain.dto.paciente.PacienteDtoCadastro;
 
-@Entity(name = "Medico")
-@Table(name = "medicos")
+@Entity(name = "Paciente")
+@Table(name = "pacientes")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Paciente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String telefone;
-    private String crm;
+    private String cpf;
     private Boolean ativo;
-
-    @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
 
     @Embedded
     private Endereco endereco;
 
-    public Medico(MedicoDtoCadastro dto) {
+    public Paciente(PacienteDtoCadastro dto) {
         this.nome = dto.nome();
         this.email = dto.email();
         this.telefone = dto.telefone();
-        this.crm = dto.crm();
+        this.cpf = dto.cpf();
         this.ativo = true;
-        this.especialidade = dto.especialidade();
         this.endereco = new Endereco(dto.endereco());
     }
 
-    public void atualizarMedico(MedicoDtoAtualizacao dto) {
+    public void atualizarPaciente(PacienteDtoAtualizacao dto) {
         if (dto.nome() != null) {
             this.nome = dto.nome();
         }
@@ -55,7 +50,7 @@ public class Medico {
         }
     }
 
-    public void excluirMedico() {
+    public void excluirPaciente() {
         this.ativo = false;
     }
 }
