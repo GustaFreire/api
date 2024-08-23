@@ -27,9 +27,14 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity<?> login(@RequestBody @Valid UsuarioDto dto) {
-        var user = new UsernamePasswordAuthenticationToken(dto.usuario(), dto.senha());
-        var authenticate = manager.authenticate(user);
-        var token = tokenService.generateToken((Usuario) authenticate.getPrincipal());
-        return ResponseEntity.ok(new JwtTokenDto(token));
+        try {
+            var user = new UsernamePasswordAuthenticationToken(dto.usuario(), dto.senha());
+            var authenticate = manager.authenticate(user);
+            var token = tokenService.generateToken((Usuario) authenticate.getPrincipal());
+            return ResponseEntity.ok(new JwtTokenDto(token));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
