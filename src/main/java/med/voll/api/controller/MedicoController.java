@@ -25,7 +25,6 @@ import med.voll.api.domain.repository.MedicoRepository;
 
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 @RequestMapping("/medicos")
 public class MedicoController {
