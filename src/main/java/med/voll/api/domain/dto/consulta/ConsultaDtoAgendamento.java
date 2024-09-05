@@ -8,9 +8,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
+import med.voll.api.domain.enums.Especialidade;
+
 public record ConsultaDtoAgendamento(
     
-@JsonAlias({"id_medico", "medico_id"})
+    @JsonAlias({"id_medico", "medico_id"})
     Long idMedico,
 
     @NotNull
@@ -20,6 +22,8 @@ public record ConsultaDtoAgendamento(
     @NotNull @Future
     @JsonAlias({"data_da_consulta", "data_consulta"})
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    LocalDateTime data) {
+    LocalDateTime data,
+    
+    Especialidade Especialidade) {
     
 }
