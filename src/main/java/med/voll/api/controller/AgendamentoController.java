@@ -14,7 +14,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import jakarta.validation.Valid;
 import med.voll.api.domain.dto.consulta.ConsultaDtoAgendamento;
 import med.voll.api.domain.dto.consulta.ConsultaDtoDetalhamento;
-import med.voll.api.domain.dto.paciente.PacienteDtoDetalhamento;
 import med.voll.api.domain.repository.ConsultaRepository;
 import med.voll.api.domain.service.AgendamentoService;
 
