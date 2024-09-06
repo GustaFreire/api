@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jakarta.persistence.EntityNotFoundException;
+import med.voll.api.domain.dto.erro.ExceptionDto;
 
 @RestControllerAdvice
 public class ErrorHandler {
@@ -30,32 +31,37 @@ public class ErrorHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<?> tratarErro400(HttpMessageNotReadableException ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
+        return ResponseEntity.badRequest().body(new ExceptionDto("Erro: " + ex.getLocalizedMessage()));
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<?> tratarErroBadCredentials() {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ExceptionDto("Credenciais inválidas"));
     }
 
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<?> tratarErroAuthentication() {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Falha na autenticação");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ExceptionDto("Falha na autenticação"));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<?> tratarErroAcessoNegado() {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ExceptionDto("Acesso negado"));
     }
 
     @ExceptionHandler(InternalAuthenticationServiceException.class)
     public ResponseEntity<?> tratarErroAuthService() {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Erro: Email não encontrado na base");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ExceptionDto("Erro: Email não encontrado na base"));
     }
 
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity<?> tratarValidacaoException(ValidacaoException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionDto("Erro: " + ex.getLocalizedMessage()));
+    }
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> tratarErro500(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " + ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ExceptionDto("Erro: " + ex.getLocalizedMessage()));
     }
 
     private record ErroDto(String campo, String mensagem) {
