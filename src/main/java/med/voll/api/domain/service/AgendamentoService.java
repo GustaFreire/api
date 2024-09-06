@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.domain.dto.consulta.ConsultaDtoAgendamento;
-import med.voll.api.domain.dto.consulta.ConsultaDtoDetalhamento;
 import med.voll.api.domain.modelo.Consulta;
 import med.voll.api.domain.modelo.Medico;
 import med.voll.api.domain.repository.ConsultaRepository;
