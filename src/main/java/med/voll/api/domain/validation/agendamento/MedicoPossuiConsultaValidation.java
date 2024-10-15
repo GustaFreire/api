@@ -1,4 +1,4 @@
-package med.voll.api.domain.validation;
+package med.voll.api.domain.validation.agendamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class MedicoPossuiConsultaValidation implements AgendamentoValidator {
 
     @Override
     public void validate(ConsultaDtoAgendamento dto) {
-        var medicoPossuiConsulta = repository.existsByMedicoIdAndData(dto.idMedico(), dto.data());
+        var medicoPossuiConsulta = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dto.idMedico(), dto.data());
         
         if (medicoPossuiConsulta) {
             throw new ValidacaoException("O Médico escolhido já possui uma consulta nesse mesmo horário");

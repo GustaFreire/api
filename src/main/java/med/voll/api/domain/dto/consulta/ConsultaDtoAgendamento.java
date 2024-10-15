@@ -24,6 +24,6 @@ public record ConsultaDtoAgendamento(
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     LocalDateTime data,
     
-    Especialidade Especialidade) {
+    Especialidade especialidade) {
     
 }

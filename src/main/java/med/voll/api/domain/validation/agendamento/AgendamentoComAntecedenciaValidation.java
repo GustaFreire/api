@@ -1,4 +1,4 @@
-package med.voll.api.domain.validation;
+package med.voll.api.domain.validation.agendamento;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -9,7 +9,7 @@ import med.voll.api.domain.dto.consulta.ConsultaDtoAgendamento;
 import med.voll.api.infra.exception.ValidacaoException;
 
 @Component
-public class ConsultaComAntecedenciaValidation  implements AgendamentoValidator {
+public class AgendamentoComAntecedenciaValidation  implements AgendamentoValidator {
  
     @Override
     public void validate(ConsultaDtoAgendamento dto) {

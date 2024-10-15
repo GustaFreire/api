@@ -1,4 +1,4 @@
-package med.voll.api.domain.validation;
+package med.voll.api.domain.validation.agendamento;
 
 import java.time.DayOfWeek;
 
